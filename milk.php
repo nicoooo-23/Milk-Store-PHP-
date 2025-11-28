@@ -6,9 +6,17 @@
         '1L' => 90
     ];
 
+    $flavors = [
+        'Plain' => 0,
+        'Chocolate' => 10,
+        'Strawberry' => 10
+    ];
+
     // initialized vars
     $size = '250ml';
     $quantity = 1;
+    $addedFlavor = 'Plain';
+    $addedFlavorCost = $flavors[$addedFlavor];
     $subtotal = 0;
     $tax = 0;
     $total = 0;
@@ -16,10 +24,12 @@
     // submit form
     if (isset($_POST['order'])) {
         $size = $_POST['size'];
+        $flavor = $_POST['flavor'];
+        $addedFlavor = $flavor;
         $quantity = $_POST['quantity'];
 
         $cost = $sizes[$size];
-        $subtotal = $cost * $quantity;
+        $subtotal = ($cost * $quantity) + ($flavors[$flavor] * $quantity);
         $tax = ($subtotal / 100) * 12;
         $total = $subtotal + $tax;
     }
@@ -133,6 +143,13 @@
             <option value="250ml" <?= $size=='250ml'?'selected':'' ?>>250ml</option>
             <option value="500ml" <?= $size=='500ml'?'selected':'' ?>>500ml</option>
             <option value="1L" <?= $size=='1L'?'selected':'' ?>>1 Liter</option>
+        </select><br><br>
+
+        <label>Select Flavor:</label><br>
+        <select name="flavor">
+            <option value="Plain" <?= $addedFlavor=='Plain'?'selected':'' ?>>Plain</option>
+            <option value="Chocolate" <?= $addedFlavor=='Chocolate'?'selected':'' ?>>Chocolate (+P10)</option>
+            <option value="Strawberry" <?= $addedFlavor=='Strawberry'?'selected':'' ?>>Strawberry (+P10)</option>
         </select><br><br>
 
         <label>Quantity:</label><br>

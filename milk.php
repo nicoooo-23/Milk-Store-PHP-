@@ -6,6 +6,7 @@
         '1L' => 90
     ];
 
+    // flavors plus additional cost
     $flavors = [
         'Plain' => 0,
         'Chocolate' => 10,
@@ -119,27 +120,41 @@
             margin-left: 10px;
         }
 
+        footer {
+            margin-top: 40px;
+            font-size: 6px;
+            color: #777;
+        }
+
     </style>
 </head>
 <body>
-
-    <h1><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpng.pngtree.com%2Fpng-clipart%2F20240323%2Foriginal%2Fpngtree-milk-bottle-dairy-product-png-image_14657287.png&f=1&nofb=1&ipt=92039055177c22686a478bfc7edb3e727ead612a8c872fcfc481a7a490ee52cd">The Milk Store</h1>
-
+    <!-- linked a separate header file (required) -->
+    <?php include 'milkHeader.php'; ?>
     <h2>Available Sizes</h2>
     <table>
         <tr>
             <th>Size</th>
             <th>Price</th>
         </tr>
-        <tr><td>250ml</td><td><?= $sizes['250ml']?></td></tr>
-        <tr><td>500ml</td><td><?= $sizes['500ml']?></td></tr>
-        <tr><td>1L</td><td><?= $sizes['1L']?></td></tr>
+        <!-- foreach to show table -->
+        <!-- used this so I don't need to adjust each time I add something new -->
+        <?php foreach ($sizes as $s => $price): ?>
+            <tr>
+                <td><?= $s ?></td>
+                <td><?= $price ?></td>
+            </tr>
+        <?php endforeach; ?>
     </table>
 
     <h2>Place an Order</h2>
+    <!-- form handling -->
     <form method="POST">
         <label>Select Size:</label><br>
         <select name="size">
+            <!-- php to check selected -->
+            <!-- conditional operator - ternary -->
+            <!-- supposed to retain user's choice after they submit -->
             <option value="250ml" <?= $size=='250ml'?'selected':'' ?>>250ml</option>
             <option value="500ml" <?= $size=='500ml'?'selected':'' ?>>500ml</option>
             <option value="1L" <?= $size=='1L'?'selected':'' ?>>1 Liter</option>
@@ -154,10 +169,10 @@
 
         <label>Quantity:</label><br>
         <input type="number" name="quantity" min="1" value="<?= $quantity ?>"><br><br>
-
+        <!-- button to display deets -->
         <button type="submit" name="order">Order Now</button>
     </form>
-
+    <!-- this part is supposed to only show up if order button is clicked -->
     <?php if(isset($_POST['order'])): ?>
         <h2>Order Summary</h2>
         <p>Size: <?= $size ?></p>
@@ -166,8 +181,11 @@
         <p>Tax: P<?= $tax ?></p>
         <p><b>Total: P<?= $total ?></b></p>
     <?php endif; ?>
-
+    
+    <!-- refresh page aka redirect to same page -->
     <button type="button" onclick="window.location.href='milk.php'">Reset</button>
-
-</body>
+    <footer>
+        <p>&copy; 2025 The Milk Store. All rights reserved. [Nicole Rivera]</p>
+    </footer>
+</body>    
 </html>

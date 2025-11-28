@@ -44,9 +44,15 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #a8e6ff;
+            --hover-color: #3b5d8a;
+        }
+
         body {
             font-family: Rubik, sans-serif;
-            background: #f8f9fa;
+            background: linear-gradient(to top, var(--secondary-color), #ffffff);
             margin: 20px;
         }
 
@@ -55,7 +61,7 @@
             align-items: center;
             gap: 10px;
             font-size: 32px;
-            color: #4a6fa5;
+            color: var(--primary-color);
         }
 
         h1 img {
@@ -64,7 +70,7 @@
 
         h2 {
             margin-top: 30px;
-            color: #4a6fa5;
+            color: var(--primary-color);
         }
 
         table {
@@ -78,7 +84,7 @@
         }
 
         th {
-            background: #4a6fa5;
+            background: var(--primary-color);
             color: white;
             padding: 8px;
         }
@@ -96,7 +102,7 @@
             margin-top: 20px;
             padding: 10px 15px;
             font-size: 16px;
-            background-color: #4a6fa5;
+            background-color: var(--primary-color);
             color: white;
             border: none;
             border-radius: 5px;
@@ -104,7 +110,7 @@
         }
 
         button:hover {
-            background-color: #3b5d8a;
+            background-color: var(--hover-color);
         }
 
         input[type="number"] {

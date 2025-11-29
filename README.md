@@ -1,8 +1,9 @@
-# The Milk Store
-## (PHP)
+# The Milk Store (PHP)
 ### 6DWEB - 2113
 
 ## Folders and Contents
+> Version Control
+
 | Assign 1 | Assign 2|
 | ------------- |:-------------:|
 | milk.php | milk.php, milkHeader.php|
